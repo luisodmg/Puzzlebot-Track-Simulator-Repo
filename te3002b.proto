@@ -1,0 +1,45 @@
+syntax = "proto3";
+import "google/protobuf/empty.proto";
+package TE3002BSimPkg;
+
+service TE3002BSim {
+	rpc GetImageFrame (google.protobuf.Empty) returns (ImageFrame){
+
+	};
+
+	rpc SetCommand (CommandData) returns (google.protobuf.Empty){
+
+	};
+
+	rpc SetConfiguration (ConfigurationData) returns (google.protobuf.Empty){
+
+	};
+}
+
+message ImageFrame {
+	bytes data = 1;
+	uint64 seq = 2;
+	string format = 3;
+}
+
+message Vector3{
+	double x = 1;
+	double y = 2;
+	double z = 3;
+}
+
+message CommandData {
+	Vector3 linear = 1;
+	Vector3 angular = 2;
+}
+
+message ConfigurationData {
+	bool resetRobot = 1;
+	uint32 mode = 2;
+	uint32 cameraWidth = 3;
+	uint32 cameraHeight = 4;
+	Vector3 cameraLinear = 5;
+	Vector3 cameraAngular = 6;
+	bool resetCamera = 7;
+	uint32 scene = 8;
+}
