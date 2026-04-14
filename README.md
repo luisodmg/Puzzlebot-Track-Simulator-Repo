@@ -13,7 +13,7 @@ This folder contains Python clients and gRPC definitions used to communicate wit
 ## Prerequisites
 
 - Python 3.9+
-- Simulator running from `../WinCtrl/TE3002BSim.exe`
+- Access to the simulator executable at `../WinCtrl/TE3002BSim.exe`
 
 Install required Python packages:
 
@@ -39,7 +39,14 @@ Make sure the simulator is running before starting any script.
 
 ## Run
 
-From this folder (`v2/`):
+1. Start the simulator executable first (required):
+
+```powershell
+cd ..\WinCtrl
+.\TE3002BSim.exe
+```
+
+2. Open another terminal in this folder (`v2/`) and run one client:
 
 ```powershell
 python .\client-rpc-tester.py
