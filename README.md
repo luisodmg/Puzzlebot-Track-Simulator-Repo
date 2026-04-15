@@ -4,7 +4,8 @@ This folder contains Python clients and gRPC definitions used to communicate wit
 
 ## Files
 
-- `actividad_2_04.py`: standalone gRPC client that receives frames and sends motion commands.
+- `actividad_2_04.py`: professor-required implementation focused on the class skeleton (`__init__`) and center-line detection logic.
+- `fulltest.py`: complete runnable test program that integrates the full flow to validate and test behavior end-to-end.
 - `client-rpc-tester.py`: simple RPC test client.
 - `client-ros2.py`: ROS2 bridge client (`/cmd_vel` subscriber, `Image` publisher).
 - `te3002b.proto`: protobuf service contract.
@@ -54,6 +55,10 @@ python .\client-rpc-tester.py
 
 ```powershell
 python .\actividad_2_04.py
+```
+
+```powershell
+python .\fulltest.py
 ```
 
 For ROS2 mode (in a ROS2-enabled shell):
