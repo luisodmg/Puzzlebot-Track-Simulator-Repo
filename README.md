@@ -4,10 +4,10 @@ This folder contains Python clients and gRPC definitions used to communicate wit
 
 ## Files
 
-- `actividad_2_04.py`: professor-required implementation focused on the class skeleton (`__init__`) and center-line detection logic.
-- `fulltest.py`: complete runnable test program that integrates the full flow to validate and test behavior end-to-end.
-- `client-rpc-tester.py`: simple RPC test client.
-- `client-ros2.py`: ROS2 bridge client (`/cmd_vel` subscriber, `Image` publisher).
+- `actividad_2_04.py`: standalone center-line detector module that applies ROI cropping, Otsu thresholding, contour filtering, and temporal smoothing (`last_center`) for robust target selection.
+- `fulltest.py`: full autonomous test client that configures the simulator, runs the center-line detector each frame, applies proportional steering control, and shows debug views (camera plus Otsu mask).
+- `client-rpc-tester.py`: baseline gRPC control loop that streams simulator frames, applies image noise preprocessing, and sends fixed motion commands for connectivity/latency checks.
+- `client-ros2.py`: ROS2-to-simulator bridge that subscribes to `/cmd_vel`, forwards velocity commands over gRPC, and publishes simulator camera frames as ROS `Image` messages.
 - `te3002b.proto`: protobuf service contract.
 - `te3002b_pb2.py`, `te3002b_pb2_grpc.py`: generated Python bindings.
 
