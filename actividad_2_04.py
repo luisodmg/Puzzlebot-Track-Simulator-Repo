@@ -69,5 +69,6 @@ class CenterLineDetector:
 
         if best_candidate is not None:
             self.last_center = best_candidate
-
-        return self.last_center
+            return self.last_center
+        else:        
+            return None

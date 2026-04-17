@@ -8,7 +8,6 @@ import te3002b_pb2
 import te3002b_pb2_grpc
 import google.protobuf.empty_pb2
 
-# --- CLASE DEL DETECTOR LIMPIA ---
 class CenterLineDetector:
     def __init__(self):
         self.cameraWidth = 320
@@ -77,8 +76,9 @@ class CenterLineDetector:
 
         if best_candidate is not None:
             self.last_center = best_candidate
-
-        return self.last_center
+            return self.last_center
+        else:        
+            return None
 # --------------------------------
 
 class SimRobotNode():

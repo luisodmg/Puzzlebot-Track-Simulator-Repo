@@ -4,17 +4,28 @@ This folder contains Python clients and gRPC definitions used to communicate wit
 
 ## Files
 
-- `actividad_2_04.py`: standalone center-line detector module that applies ROI cropping, Otsu thresholding, contour filtering, and temporal smoothing (`last_center`) for robust target selection.
-- `fulltest.py`: full autonomous test client that configures the simulator, runs the center-line detector each frame, applies proportional steering control, and shows debug views (camera plus Otsu mask).
+- `actividad_2_04.py`: professor version for Activity 2.04 (upload target). Same logic as `fulltest4.py`, with a different filename.
+- `actividad_2_05.py`: professor version for Activity 2.05 (upload target). Same logic as `fulltest5.py`, with a different filename.
+- `fulltest4.py`: full autonomous test node equivalent to `actividad_2_04.py`.
+- `fulltest5.py`: full autonomous test node equivalent to `actividad_2_05.py`.
 - `client-rpc-tester.py`: baseline gRPC control loop that streams simulator frames, applies image noise preprocessing, and sends fixed motion commands for connectivity/latency checks.
 - `client-ros2.py`: ROS2-to-simulator bridge that subscribes to `/cmd_vel`, forwards velocity commands over gRPC, and publishes simulator camera frames as ROS `Image` messages.
 - `te3002b.proto`: protobuf service contract.
 - `te3002b_pb2.py`, `te3002b_pb2_grpc.py`: generated Python bindings.
 
+## Activity File Mapping
+
+- Activity 2.04: `actividad_2_04.py` (professor naming) <-> `fulltest4.py` (full test node naming)
+- Activity 2.05: `actividad_2_05.py` (professor naming) <-> `fulltest5.py` (full test node naming)
+
+The logic is the same in each pair; only the filenames differ.
+
 ## Prerequisites
 
 - Python 3.9+
-- Access to the simulator executable at `../WinCtrl/TE3002BSim.exe`
+- Access to the simulator executable for your OS:
+  - Windows: `../WinCtrl/TE3002BSim.exe`
+  - macOS/Linux: use the corresponding simulator version for your platform
 
 Install required Python packages:
 
@@ -42,10 +53,14 @@ Make sure the simulator is running before starting any script.
 
 1. Start the simulator executable first (required):
 
+On Windows:
+
 ```powershell
 cd ..\WinCtrl
 .\TE3002BSim.exe
 ```
+
+On macOS/Linux, start the equivalent simulator build for your OS (not `WinCtrl`).
 
 2. Open another terminal in this folder (`v2/`) and run one client:
 
@@ -58,7 +73,15 @@ python .\actividad_2_04.py
 ```
 
 ```powershell
-python .\fulltest.py
+python .\actividad_2_05.py
+```
+
+```powershell
+python .\fulltest4.py
+```
+
+```powershell
+python .\fulltest5.py
 ```
 
 For ROS2 mode (in a ROS2-enabled shell):
