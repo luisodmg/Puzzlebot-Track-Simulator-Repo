@@ -1,0 +1,10 @@
+path: ./dataset          # Root path of your dataset (relative to this file)
+train: images/train      # Training images
+val: images/val          # Validation images
+
+nc: 4                    # Number of classes
+names:
+  - Stop
+  - Workers
+  - Go Straight
+  - Turn Left/Right
