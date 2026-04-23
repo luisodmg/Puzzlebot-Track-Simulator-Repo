@@ -8,6 +8,7 @@ This folder contains Python clients and gRPC definitions used to communicate wit
 - `actividad_2_05.py`: professor version for Activity 2.05 (upload target). Same logic as `fulltest5.py`, with a different filename.
 - `fulltest4.py`: full autonomous test node equivalent to `actividad_2_04.py`.
 - `fulltest5.py`: full autonomous test node equivalent to `actividad_2_05.py`.
+- `fulltest6.py`: work-in-progress traffic-sign prototype that streams camera frames, checks blur, runs YOLOv8n detection, and overlays the detected sign label.
 - `client-rpc-tester.py`: baseline gRPC control loop that streams simulator frames, applies image noise preprocessing, and sends fixed motion commands for connectivity/latency checks.
 - `client-ros2.py`: ROS2-to-simulator bridge that subscribes to `/cmd_vel`, forwards velocity commands over gRPC, and publishes simulator camera frames as ROS `Image` messages.
 - `te3002b.proto`: protobuf service contract.
@@ -19,6 +20,8 @@ This folder contains Python clients and gRPC definitions used to communicate wit
 - Activity 2.05: `actividad_2_05.py` (professor naming) <-> `fulltest5.py` (full test node naming)
 
 The logic is the same in each pair; only the filenames differ.
+
+`fulltest6.py` is separate from those activity pairs. It is currently a prototype for traffic-sign detection and visualization, not a finished autonomous behavior loop.
 
 ## Prerequisites
 
@@ -83,6 +86,23 @@ python .\fulltest4.py
 ```powershell
 python .\fulltest5.py
 ```
+
+```powershell
+python .\fulltest6.py
+```
+
+Current prototype behavior:
+
+- initializes a gRPC connection to `127.0.0.1:7072`
+- configures the simulator camera, robot reset, and scene selection
+- runs frame acquisition in a background thread
+- resizes the incoming image to a smaller preview for display
+- uses a blur metric to skip low-quality frames before detection
+- sends the frame through YOLOv8n (`yolov8n.pt`) and draws bounding boxes plus labels
+- shows the latest detected sign as `En frente: ...`
+- leaves the motion command at zero, so sign-based driving logic is still pending
+
+The control behavior is intentionally incomplete at this stage.
 
 For ROS2 mode (in a ROS2-enabled shell):
 
